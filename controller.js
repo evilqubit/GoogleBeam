@@ -7,6 +7,7 @@ var drive = require('./config.js')['drive'];
 var tuwm = new twitter_update_with_media(config);
 var image_dir=path.join(__dirname, 'images/');
 
+
 /*
  * @shoot 
  * @param name twitter handler
@@ -20,14 +21,15 @@ exports.shoot = function(name, save){
 
 	function uploadImage(){
 		tuwm.post("There you go! @"+name, image_path, function(err, response) {
-				if (err) console.log(err);
-				else console.log(response)
-				if(save){
-					child = exec("python bin/gdrive.py -u "+drive.username+" -p "+drive.password+" -f "+ image_path, 
-						function(err, stdout, stderr){
-							console.log(stdout);
-						})
-				}
+			if (err) console.log(err);
+			else console.log(response)
+			if(save){
+				upload();
+				// child = exec("python bin/gdrive.py -u "+drive.username+" -p "+drive.password+" -f "+ image_path, 
+				// 	function(err, stdout, stderr){
+				// 		console.log(stdout);
+				// 	})
+				// }
 			});
 	}
 
@@ -38,5 +40,13 @@ exports.shoot = function(name, save){
 		} 
 	});
 
-
+	var upload = function () {
+		client.drive.files
+		.insert({
+			title: image_name,
+			mimeType: 'image/jpeg'
+		})
+		.withMedia('image/jpeg', image_path)
+		.withAuthClient(auth).execute(console.log);
+	};
 }

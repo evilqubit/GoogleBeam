@@ -11,8 +11,13 @@ module.exports = {
 		token: 'ACCESS_TOKEN',
 		token_secret: 'ACCESS_TOKEN_SECRET'
 	},
+	// GET the Google Drive client_id and the client secret from here: https://cloud.google.com/console/start/api?id=drive&credential=client_key
 	drive:{
-		username: 'YOU_USERNAME',
-		password: 'YOUR_PASSWORD'
+		// username: 'YOU_USERNAME',
+		// password: 'YOUR_PASSWORD',
+		client_id: 'CLIENT_ID',
+		client_secret: 'CLIENT_SECRET0',
+		redirect_url: 'REDIRECT_URL',
+		scope: 'https://www.googleapis.com/auth/drive.file'
 	}
 }

@@ -30,7 +30,9 @@
   ],
   "dependencies": {
     "request":"*",
-    "ntwitter":"*"
+    "ntwitter":"*",
+    "readline": "*",
+    "googleapis": "*"
   },
   "repository": {
     "type": "git",
